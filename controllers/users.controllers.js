@@ -10,7 +10,7 @@ exports.findAllUsers = async (req, res) => {
     });
     if (!users) {
       return res.status(404).json({
-        status: 'errr',
+        status: 'error',
         message: 'user not found',
       });
     }
@@ -60,7 +60,7 @@ exports.findOneUser = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  //name, email password, role
+  //name, email, password, role
   try {
     const { name, email, password, role } = req.body;
     const user = await User.create({ name, email, password, role });
