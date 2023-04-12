@@ -3,7 +3,7 @@ const User = require('../models/users.models');
 exports.findAllUsers = async (req, res) => {
   try {
     const users = await User.findAll({
-      atributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name', 'email'],
       where: {
         status: 'available',
       },
@@ -32,7 +32,7 @@ exports.findOneUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findOne({
-      atributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name', 'email'],
       where: {
         id,
         status: 'available',
@@ -45,7 +45,7 @@ exports.findOneUser = async (req, res) => {
       });
     }
 
-    return res.status(200)({
+    return res.status(200).json({
       status: 'success',
       message: 'User Found😎',
       user,
@@ -83,7 +83,7 @@ exports.updateUser = async (req, res) => {
     const { id } = req.params;
 
     const user = await User.findOne({
-      atributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name', 'email'],
       where: {
         id,
         status: 'available',
@@ -113,7 +113,7 @@ exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findOne({
-      atributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name', 'email'],
       where: {
         id,
         status: 'available',
@@ -135,7 +135,7 @@ exports.deleteUser = async (req, res) => {
     console.log(error);
     res.status(500).json({
       status: 'fail',
-      message: 'An error has occurred, talk to the administrator',
+      message: 'An error has occurred, talk to the administrator😒',
     });
   }
 };

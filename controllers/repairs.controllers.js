@@ -3,7 +3,7 @@ const Repair = require('../models/repairs.models');
 exports.findAllRepairs = async (req, res) => {
   try {
     const repairs = await Repair.findAll({
-      atributes: ['id','date', 'userId'],
+      attributes: ['id','date', 'userId'],
       where: {
         status: 'pending',
       },
