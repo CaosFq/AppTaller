@@ -1,11 +1,11 @@
 {
   "name": "apptarea",
   "version": "1.0.0",
-  "description": "cafeApp",
+  "description": "repairs",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev":"nodemon server.js"
+    "start:dev": "nodemon server.js"
   },
   "author": "Hugo Andrés Romero",
   "license": "ISC",

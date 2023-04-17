@@ -1,17 +1,26 @@
-//1-Requerimos Express que es una libreria
+//librerias
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
+
 const usersRoutes = require('./routes/users.routes');
 const repairsRoutes = require('./routes/repairs.routes');
 
-//2-Iniciamos la aplicación de expres en la variable app
 const app = express();
-
+//1-Middlewares
+app.use(morgan('dev'));
 app.use(express.json());
+app.use(cors());
 
-//3-Crearnos una ruta de mi servidor
+app.use((req, res, next) => {
+  req.requestTime = new Date();
+  next();
+});
+
+//2-Crearnos una ruta de mi servidor
 
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/repairs', repairsRoutes);
 
+//3-Exports app                
 module.exports = app;
