@@ -44,7 +44,7 @@ router.route('/').get(usersControllers.findAllUsers);
 router
   .route('/:id')
   .get(usersMiddlewares.validIfExistUser, usersControllers.findOneUser)
-  .patch(usersMiddlewares.validIfExistUser,usersControllers.updateUser)
+  .patch(usersMiddlewares.validIfExistUser, validationsMiddlewares.updateUserValidation, usersControllers.updateUser)
   .delete(usersMiddlewares.validIfExistUser,usersControllers.deleteUser);
 
 module.exports = router;

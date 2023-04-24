@@ -27,7 +27,7 @@ const User = db.define('user', {
      
     },
     status: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('available', 'disabled'),
         allowNull: false,
         defaultValue:'available'
     },

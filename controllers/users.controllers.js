@@ -30,7 +30,7 @@ exports.findAllUsers = async (req, res) => {
 
 exports.findOneUser = async (req, res) => {
   try {
-    const{user} = req;
+    const { user } = req;
     return res.status(200).json({
       status: 'success',
       message: 'User Found😎',
@@ -47,25 +47,14 @@ exports.findOneUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { name, email } = req.body;
+    const { user } = req;
 
-    const user = await User.findOne({
-      attributes: ['id', 'name', 'email'],
-      where: {
-        id,
-        status: 'available',
-      },
-    });
-    if (!user) {
-      return res.status(404).json({
-        status: 'error',
-        message: 'User not found😒',
-      });
-    }
     await user.update({ name, email });
+
     return res.status(200).json({
-      status: 'success',
-      message: 'User updated successfuly',
+      status: 'available',
+      message: 'The user has been update😁',
     });
   } catch (error) {
     console.log(error);
@@ -78,31 +67,18 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await User.findOne({
-      attributes: ['id', 'name', 'email'],
-      where: {
-        id,
-        status: 'available',
-      },
-    });
-    if (!user) {
-      return res.status(404).json({
-        status: 'error',
-        message: 'User not found😒',
-      });
-    }
-
-    await user.update({ status: 'disabled' });
-    res.status(200).json({
+    const { user } = req;
+    await user.findOne({ status: 'disabled' });
+    return res.status(200).json({
       status: 'success',
-      message: 'User delete successfully',
+      message: 'The user has been deleted',
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       status: 'fail',
       message: 'An error has occurred, talk to the administrator😒',
+      error,
     });
   }
 };
