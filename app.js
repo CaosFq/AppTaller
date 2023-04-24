@@ -5,10 +5,13 @@ const cors = require('cors');
 
 const usersRoutes = require('./routes/users.routes');
 const repairsRoutes = require('./routes/repairs.routes');
+const authRouter = require('./routes/auth.routes');
 
 const app = express();
-//1-Middlewares
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json());
 app.use(cors());
 
@@ -17,10 +20,11 @@ app.use((req, res, next) => {
   next();
 });
 
-//2-Crearnos una ruta de mi servidor
+//2-Rutas
 
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/repairs', repairsRoutes);
+app.use('/api/v1/auth/', authRouter);
 
-//3-Exports app                
+//3-Exports app
 module.exports = app;

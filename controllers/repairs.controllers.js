@@ -3,16 +3,14 @@ const Repair = require('../models/repairs.models');
 exports.findAllRepairs = async (req, res) => {
   try {
     const repairs = await Repair.findAll({
-      attributes: ['id','date', 'userId'],
+      attributes: ['id', 'date', 'userId'],
       where: {
         status: 'pending',
       },
     });
-    
-    
+
     return res.status(200).json({
       status: 'success',
-      
     });
   } catch (error) {
     console.log(error);
@@ -25,21 +23,7 @@ exports.findAllRepairs = async (req, res) => {
 
 exports.findOneRepair = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const repair = await Repair.findOne({
-    
-      where: {
-        id,
-        status: 'pending',
-      },
-    });
-    if (!repair) {
-      return res.status(404).json({
-        status: 'error',
-        message: 'Repair not found😒',
-      });
-    }
+    const { repair } = req;
 
     return res.status(200).json({
       status: 'success',
@@ -79,7 +63,6 @@ exports.updateRepair = async (req, res) => {
     const { id } = req.params;
 
     const repair = await Repair.findOne({
-  
       where: {
         id,
         status: 'completed',
@@ -91,7 +74,7 @@ exports.updateRepair = async (req, res) => {
         message: 'Repair not found😒',
       });
     }
-    await repair.update({status: 'completed'});
+    await repair.update({ status: 'completed' });
     return res.status(200).json({
       status: 'success',
       message: 'Repair updated successfuly😁',
@@ -100,7 +83,7 @@ exports.updateRepair = async (req, res) => {
     console.log(error);
     res.status(500).json({
       status: 'fail',
-      message: 'Somethin went very wront!😒' ,
+      message: 'Somethin went very wront!😒',
     });
   }
 };
@@ -109,7 +92,6 @@ exports.deleteRepair = async (req, res) => {
   try {
     const { id } = req.params;
     const repair = await Repair.findOne({
-      
       where: {
         id,
         status: 'pending',
@@ -135,7 +117,3 @@ exports.deleteRepair = async (req, res) => {
     });
   }
 };
-
-
-
-
