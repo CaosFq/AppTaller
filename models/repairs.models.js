@@ -8,6 +8,14 @@ const Repair = db.define('repair', {
     allowNull: false,
     type: DataTypes.INTEGER,
   },
+  motorNumber: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   date: {
     type: DataTypes.DATE,
     allowNull: false,

@@ -8,7 +8,10 @@ const authControllers = require('../controllers/auth.controllers');
 
 const router = express.Router();
 
-router.post('/signup', validations.createUserValidation, authControllers.signup);
-
+router.post(
+  '/signup',
+  validations.createUserValidation,
+  authControllers.signup
+);
 
 module.exports = router;
