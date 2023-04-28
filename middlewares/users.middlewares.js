@@ -12,10 +12,11 @@ exports.validIfExistUser = catchAsync(async (req, res, next) => {
       status: 'available',
     },
   });
- // throw new Error('para probar, genero un error!🤦‍♂️');
+ //throw new Error('para probar, genero un error!🤦‍♂️');
   if (!user) {
     return next(new AppError('User not found 🤷‍♂️', 404));
   }
   req.user = user;
   next();
 });
+

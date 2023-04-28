@@ -9,7 +9,7 @@ const validationsMiddlewares = require('./../middlewares/validations.middlewares
 
 //Valido name, email, password, role
 const validUsers = (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
   if (!name) {
     return res.status(400).json({
       status: 'error',

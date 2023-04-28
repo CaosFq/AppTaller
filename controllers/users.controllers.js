@@ -16,18 +16,17 @@ exports.findAllUsers = catchAsync(async (req, res) => {
   }
   res.status(200).json({
     status: 'success',
-    message: 'user Found',
+    message: 'users Found😎😁😃😜!!',
     users,
   });
 });
 
 exports.findOneUser = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const user =await User.findOneUser
+  const { user } = req;
   return res.status(200).json({
-    status: 'available',
+    status: 'success',
     message: 'User Found😎',
-    id,
+    user,
   });
 });
 
