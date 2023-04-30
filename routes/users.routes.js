@@ -6,6 +6,7 @@ const usersControllers = require('./../controllers/users.controllers');
 //Middlewares
 const usersMiddlewares = require('./../middlewares/users.middlewares');
 const validationsMiddlewares = require('./../middlewares/validations.middlewares');
+const authMiddlewares = require('./../middlewares/auth.middlewares');
 
 //Valido name, email, password, role
 const validUsers = (req, res, next) => {
@@ -39,7 +40,7 @@ const validUsers = (req, res, next) => {
 
 const router = express.Router();
 
-router.route('/').get(usersControllers.findAllUsers);
+router.route('/').get(authMiddlewares.protect, usersControllers.findAllUsers);
 
 router
   .route('/:id')
